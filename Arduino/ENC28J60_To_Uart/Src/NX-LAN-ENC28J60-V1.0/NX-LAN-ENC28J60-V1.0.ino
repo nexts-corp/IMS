@@ -86,14 +86,14 @@ void setup() {
   uint8_t mac[6] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05};
   Ethernet.begin(mac);
 
-  Serial.print("LIP: ");
-  Serial.println(Ethernet.localIP());
-  Serial.print("SN: ");
-  Serial.println(Ethernet.subnetMask());
-  Serial.print("GW: ");
-  Serial.println(Ethernet.gatewayIP());
-  Serial.print("DNS: ");
-  Serial.println(Ethernet.dnsServerIP());
+//  Serial.print("LIP: ");
+//  Serial.println(Ethernet.localIP());
+//  Serial.print("SN: ");
+//  Serial.println(Ethernet.subnetMask());
+//  Serial.print("GW: ");
+//  Serial.println(Ethernet.gatewayIP());
+//  Serial.print("DNS: ");
+//  Serial.println(Ethernet.dnsServerIP());
 
   server.begin();
 
@@ -306,7 +306,7 @@ void set_default_conf() {
   ee_set_subnet((byte)255, (byte)255, (byte)255, (byte)0);
   ee_set_gateway((byte)192, (byte)168, (byte)1, (byte)1);
   ee_set_dns_serv((byte)8, (byte)8, (byte)8, (byte)8);
-  ee_set_ip_serv((byte)192, (byte)168, (byte)1, (byte)154);
+  ee_set_ip_serv((byte)192, (byte)168, (byte)10, (byte)106);
   ee_set_port_serv((int)5000);
 }
 
@@ -394,7 +394,7 @@ void print_conf_port() {
 void loop() {
   byte b_buff;
   if (!client.connected()) {
-    if (client.connect(IPAddress(192, 168, 1, 154), 5000))
+    if (client.connect(IPAddress(192, 168, 10, 106), 5000))
     {
       //Serial.println("Client connected to server.");
       //      Serial.write(LAN_INFO);
@@ -435,17 +435,19 @@ void loop() {
         }
 
         buff_cmd[cmd_count++] = (byte)b_buff;
-        if (cmd_count >= 3) {
+        if (cmd_count >=3) {
           if (((byte)buff_cmd[0] == (byte)cmd_config_mode[0]) && ((byte)buff_cmd[1] == (byte)cmd_config_mode[1]) && ((byte)buff_cmd[2] == (byte)cmd_config_mode[2])) {
             Serial.println("Config mode.");
             cmd_count = 0;
             break;
           }
+          b_buff = 0;
           cmd_count = 0;
         }
         client.write(b_buff);
       }
     }
+    
   }
 
 
