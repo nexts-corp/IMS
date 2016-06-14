@@ -29,6 +29,7 @@
 #define TAG_LOCAL_DNS       0x50
 #define TAG_SERVER_IP       0x60
 #define TAG_SERVER_PORT     0x70
+#define TAG_SHOW_CON        0x80
 
 #define DHCP_ENABLE         0x10
 #define DHCP_DISABLE        0x20  //STATIC
@@ -59,10 +60,10 @@ unsigned int uart_index_count = 0;
 int len_update = 0;
 int uart_update = 0;
 
-
+int Config = 0;
 int message_id = 0;
 
-byte cmd_config_mode[3], buff_cmd[3];
+byte cmd_config_mode[3], buff_cmd[5];
 //int i, j, k;
 int cmd_count = 0;
 
@@ -80,20 +81,20 @@ void setup() {
 
   Serial.begin(9600);
 
-  set_default_conf();
-  print_conf();
+  //set_default_conf();
+  //print_conf();
 
   uint8_t mac[6] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05};
   Ethernet.begin(mac);
 
-//  Serial.print("LIP: ");
-//  Serial.println(Ethernet.localIP());
-//  Serial.print("SN: ");
-//  Serial.println(Ethernet.subnetMask());
-//  Serial.print("GW: ");
-//  Serial.println(Ethernet.gatewayIP());
-//  Serial.print("DNS: ");
-//  Serial.println(Ethernet.dnsServerIP());
+  //  Serial.print("LIP: ");
+  //  Serial.println(Ethernet.localIP());
+  //  Serial.print("SN: ");
+  //  Serial.println(Ethernet.subnetMask());
+  //  Serial.print("GW: ");
+  //  Serial.println(Ethernet.gatewayIP());
+  //  Serial.print("DNS: ");
+  //  Serial.println(Ethernet.dnsServerIP());
 
   server.begin();
 
@@ -435,25 +436,62 @@ void loop() {
         }
 
         buff_cmd[cmd_count++] = (byte)b_buff;
-        if (cmd_count >=3) {
-          if (((byte)buff_cmd[0] == (byte)cmd_config_mode[0]) && ((byte)buff_cmd[1] == (byte)cmd_config_mode[1]) && ((byte)buff_cmd[2] == (byte)cmd_config_mode[2])) {
-            Serial.println("Config mode.");
+        
+        if(TAG_SHOW_CON == (byte)buff_cmd[0]){
+              print_conf();
+              cmd_count = 0;            
+        }
+        if (Config != 1) {
+          if (cmd_count >= 3) {
+            if (((byte)buff_cmd[0] == (byte)cmd_config_mode[0]) && ((byte)buff_cmd[1] == (byte)cmd_config_mode[1]) && ((byte)buff_cmd[2] == (byte)cmd_config_mode[2])) {
+              Serial.println("C");
+              cmd_count = 0;
+              Config = 1;
+              //break;
+            }
             cmd_count = 0;
-            break;
           }
-          b_buff = 0;
-          cmd_count = 0;
+        }
+        else {
+            if (TAG_DHCP == (byte)buff_cmd[0]) {
+              //Serial.println("DHCP mode.");
+            }
+            else if (TAG_LOCAL_IP == (byte)buff_cmd[0]) { 
+
+              ee_set_ip((byte)buff_cmd[1],(byte)buff_cmd[2],(byte)buff_cmd[3],(byte)buff_cmd[4]);
+              cmd_count = 0;
+            }
+            else if (TAG_LOCAL_SN == (byte)buff_cmd[0]) {
+              //Serial.println("Set SN.");
+            }
+            else if (TAG_LOCAL_GW == (byte)buff_cmd[0]) {
+              //Serial.println("Set GW.");
+            }
+            else if (TAG_LOCAL_DNS == (byte)buff_cmd[0]) {
+              //Serial.println("Set DNS.");
+            }
+            else if (TAG_SERVER_IP ==  (byte)buff_cmd[0]) {
+              //Serial.println("Set Server_IP.");
+            }
+            else if (TAG_SERVER_PORT ==  (byte)buff_cmd[0]) {
+              //Serial.println("Set Server_PORT.");
+            }
+            
+            
         }
         client.write(b_buff);
       }
+     
+  
     }
-    
+
+
   }
 
 
-///////////////////Server Part///////////////////////
+  ///////////////////Server Part///////////////////////
   size_t size;
-  
+
   if (clientConf = server.available())
   {
     while ((size = clientConf.available()) > 0)
