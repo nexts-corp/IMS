@@ -307,7 +307,7 @@ void set_default_conf() {
   ee_set_subnet((byte)255, (byte)255, (byte)255, (byte)0);
   ee_set_gateway((byte)192, (byte)168, (byte)1, (byte)1);
   ee_set_dns_serv((byte)8, (byte)8, (byte)8, (byte)8);
-  ee_set_ip_serv((byte)192, (byte)168, (byte)10, (byte)106);
+  ee_set_ip_serv((byte)192, (byte)168, (byte)10, (byte)123);
   ee_set_port_serv((int)5000);
 }
 
@@ -394,8 +394,9 @@ void print_conf_port() {
 
 void loop() {
   byte b_buff;
+  ee_get_ip(&data_cmd_buff);
   if (!client.connected()) {
-    if (client.connect(IPAddress(192, 168, 10, 106), 5000))
+    if (client.connect(IPAddress(192, 168, 10, 123), 5000))
     {
       //Serial.println("Client connected to server.");
       //      Serial.write(LAN_INFO);
@@ -441,6 +442,10 @@ void loop() {
               print_conf();
               cmd_count = 0;            
         }
+        if((byte)buff_cmd[0] == '-' && (byte)buff_cmd[1] == '-' && (byte)buff_cmd[2] == '-'){
+          Config = 0;
+          Serial.println("EC");
+        }
         if (Config != 1) {
           if (cmd_count >= 3) {
             if (((byte)buff_cmd[0] == (byte)cmd_config_mode[0]) && ((byte)buff_cmd[1] == (byte)cmd_config_mode[1]) && ((byte)buff_cmd[2] == (byte)cmd_config_mode[2])) {
@@ -462,19 +467,24 @@ void loop() {
               cmd_count = 0;
             }
             else if (TAG_LOCAL_SN == (byte)buff_cmd[0]) {
-              //Serial.println("Set SN.");
+              ee_set_subnet((byte)buff_cmd[1],(byte)buff_cmd[2],(byte)buff_cmd[3],(byte)buff_cmd[4]);
+              cmd_count = 0;
             }
             else if (TAG_LOCAL_GW == (byte)buff_cmd[0]) {
-              //Serial.println("Set GW.");
+              ee_set_gateway((byte)buff_cmd[1],(byte)buff_cmd[2],(byte)buff_cmd[3],(byte)buff_cmd[4]);
+              cmd_count = 0;
             }
             else if (TAG_LOCAL_DNS == (byte)buff_cmd[0]) {
-              //Serial.println("Set DNS.");
+              ee_set_dns_serv((byte)buff_cmd[1],(byte)buff_cmd[2],(byte)buff_cmd[3],(byte)buff_cmd[4]);
+              cmd_count = 0;
             }
             else if (TAG_SERVER_IP ==  (byte)buff_cmd[0]) {
-              //Serial.println("Set Server_IP.");
+              ee_set_ip_serv((byte)buff_cmd[1],(byte)buff_cmd[2],(byte)buff_cmd[3],(byte)buff_cmd[4]);
+              cmd_count = 0;
             }
             else if (TAG_SERVER_PORT ==  (byte)buff_cmd[0]) {
-              //Serial.println("Set Server_PORT.");
+              ee_set_port_serv((byte)buff_cmd[1]);
+              cmd_count = 0;
             }
             
             
