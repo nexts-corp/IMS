@@ -1,0 +1,10 @@
+VERSION:3 SOURCE_TIMESTAMP:48F45EC3
+NODE:I LEVEL:0 LINE:1 "C:\cvavr2\inc\mega2560.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr2\inc\stdio.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavr2\inc\string.h"
+NODE:I LEVEL:0 LINE:4 "C:\cvavr2\inc\ctype.h"
+NODE:I LEVEL:0 LINE:5 "C:\cvavr2\inc\delay.h"
+NODE:I LEVEL:0 LINE:9 "C:\Users\acer\Desktop\AVR\NX_Libraly\nx_io.h"
+NODE:I LEVEL:0 LINE:10 "C:\Users\acer\Desktop\AVR\NX_Libraly\nx_usart.h"
+NODE:I LEVEL:0 LINE:11 "C:\Users\acer\Desktop\AVR\NX_Libraly\nx_config.h"
+NODE:F LEVEL:0 LINE:13 "main(void)"

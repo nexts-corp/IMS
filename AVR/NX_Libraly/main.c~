@@ -1,0 +1,43 @@
+#include <mega2560.h>  
+#include <stdio.h>           
+#include <string.h>
+#include <ctype.h>         
+#include <delay.h>
+
+
+
+#include "nx_io.h"
+#include "nx_usart.h"
+#include "nx_config.h"
+
+void main(void)
+{
+      int ADC=0;
+      int duty=0;
+      config_mcu(); //config ALL MCU AT mega 2560
+      init_portin(PF); //init port PF is input
+      init_analogpin(A0); //init pin A0 is analogp input
+      init_uart(1,38400); //init Uart CH1 Baudrate 38400
+
+      while(1)
+      {     
+           Set_PWM(1 ,duty); //Set output PWM CH1  = duty
+           Set_PWM(2 ,duty); //Set output PWM CH2  = duty
+         
+           ADC = analog_read(A0); //Read analogp input A0
+           printDebug("Read ADC CH0 : %d\r\n",ADC);
+           delay_ms(500);
+           duty=duty+50;
+           if(duty>255)
+           {
+                duty=0;
+           }
+          
+            
+      }
+     
+}
+
+
+
+

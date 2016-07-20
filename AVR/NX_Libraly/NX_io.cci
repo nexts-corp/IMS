@@ -1,0 +1,11 @@
+VERSION:3 SOURCE_TIMESTAMP:48F29060
+NODE:I LEVEL:0 LINE:1 "C:\cvavr2\inc\mega2560.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr2\inc\stdlib.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavr2\inc\string.h"
+NODE:I LEVEL:0 LINE:4 "C:\cvavr2\inc\delay.h"
+NODE:I LEVEL:0 LINE:5 "C:\cvavr2\inc\stdio.h"
+NODE:I LEVEL:0 LINE:6 "C:\Users\acer\Desktop\AVR\NX_Libraly\nx_io.h"
+NODE:M LEVEL:0 LINE:8 "ADC_VREF_TYPE"
+NODE:F LEVEL:0 LINE:15 "analog_read(unsigned char adc_input)"
+NODE:F LEVEL:0 LINE:23 "init_analogpin(unsigned int pin)"
+NODE:F LEVEL:0 LINE:35 "Set_PWM(unsigned char ch,int duty)"
