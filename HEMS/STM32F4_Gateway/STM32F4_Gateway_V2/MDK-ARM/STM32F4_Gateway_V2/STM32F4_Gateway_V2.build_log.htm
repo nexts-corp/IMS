@@ -1,0 +1,108 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.18.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: bk Microsoft, Microsoft, LIC=QF8WF-6QXZY-GJP6P-M9GPH-KADNA-W1DDP
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Standard  Version: 5.18
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 1 (build 61)
+Assembler:       Armasm.exe V5.06 update 1 (build 61)
+Linker/Locator:  ArmLink.exe V5.06 update 1 (build 61)
+Library Manager: ArmAr.exe V5.06 update 1 (build 61)
+Hex Converter:   FromElf.exe V5.06 update 1 (build 61)
+CPU DLL:         SARMCM3.DLL V5.18
+Dialog DLL:      DCM.DLL V1.13.6.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
+Dialog DLL:      TCM.DLL V1.14.8.0
+ 
+<h2>Project:</h2>
+C:\Data\Project-Docs\HEMS\STM32F4_Gateway\STM32F4_Gateway_V2\MDK-ARM\STM32F4_Gateway_V2.uvprojx
+Project File Date:  08/05/2016
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'STM32F4_Gateway_V2'
+compiling main.c...
+../Inc/main.h(43): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\nx_libs\inc\print_debug.h(30): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\nx_libs\inc\uart2_manag.h(24): warning:  #1295-D: Deprecated declaration uart2_avaiable - give arg types
+  uint16_t uart2_avaiable();
+..\nx_libs\inc\uart2_manag.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\uart3_manag.h(8): warning:  #1295-D: Deprecated declaration uart3_callback - give arg types
+  void uart3_callback();
+..\nx_libs\inc\uart3_manag.h(12): warning:  #1295-D: Deprecated declaration uart3_callback - give arg types
+  extern void uart3_callback();
+..\nx_libs\inc\uart3_manag.h(16): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\uart4_manag.h(8): warning:  #1295-D: Deprecated declaration uart4_callback - give arg types
+  void uart4_callback();
+..\nx_libs\inc\uart4_manag.h(12): warning:  #1295-D: Deprecated declaration uart4_callback - give arg types
+  extern void uart4_callback();
+..\nx_libs\inc\uart4_manag.h(16): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\uart6_manag.h(8): warning:  #1295-D: Deprecated declaration uart6_callback - give arg types
+  void uart6_callback();
+..\nx_libs\inc\uart6_manag.h(12): warning:  #1295-D: Deprecated declaration uart6_callback - give arg types
+  extern void uart6_callback();
+..\nx_libs\inc\uart6_manag.h(16): warning:  #1-D: last line of file ends without a newline
+  #endif 
+../Inc/main.h(23): warning:  #1295-D: Deprecated declaration uart2_callback - give arg types
+  void uart2_callback();
+../Inc/main.h(24): warning:  #1295-D: Deprecated declaration uart3_callback - give arg types
+  void uart3_callback();
+../Inc/main.h(34): warning:  #1295-D: Deprecated declaration uart2_callback - give arg types
+  extern void uart2_callback();
+../Inc/main.h(35): warning:  #1295-D: Deprecated declaration uart3_callback - give arg types
+  extern void uart3_callback();
+../Inc/main.h(36): warning:  #1295-D: Deprecated declaration uart4_callback - give arg types
+  extern void uart4_callback();
+../Inc/main.h(37): warning:  #1295-D: Deprecated declaration uart6_callback - give arg types
+  extern void uart6_callback();
+../Inc/main.h(43): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\nx_libs\inc\gw_task.h(16): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\offline_task.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\eth_task.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif 
+../Src/main.c(104): warning:  #1295-D: Deprecated declaration test_print_uart - give arg types
+  void test_print_uart();
+../Src/main.c(578): warning:  #188-D: enumerated type mixed with another type
+  		if((os_state=osSemaphoreWait(myBinarySem01Handle,2000))==0){
+../Src/main.c(558): warning:  #550-D: variable "os_state" was set but never used
+  	osStatus os_state;
+../Src/main.c: 26 warnings, 0 errors
+linking...
+Program Size: Code=28776 RO-data=740 RW-data=160 ZI-data=20280  
+FromELF: creating hex file...
+"STM32F4_Gateway_V2\STM32F4_Gateway_V2.axf" - 0 Error(s), 26 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
+                ARM::CMSIS:CORE:4.3.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 4.3.0
+
+<h2>Collection of Component include folders:</h2>
+  C:\Data\Project-Docs\HEMS\STM32F4_Gateway\STM32F4_Gateway_V2\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.8.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:4.3.0
+Build Time Elapsed:  00:00:03
+</pre>
+</body>
+</html>

@@ -1,0 +1,22 @@
+#include "eth_task.h"
+
+/* eth_task function */
+void eth_task(void const * argument)
+{
+  /* USER CODE BEGIN StartTask04 */
+	uint8_t i = 0;
+	
+	print_debug_semph(0,"eth_task is running ...\n");
+  /* Infinite loop */
+  for(;;)
+  {
+		print_debug_semph(0,"eth_task(%d)\n",444);
+		HAL_GPIO_TogglePin(GPIOD, LD6_Pin);
+//		for(i=41;i<127;i++){
+//			print_debug_semph(0,"%c",i);
+//		}
+//		print_debug(0,"\n");
+    osDelay(1000);
+  }
+  /* USER CODE END StartTask04 */
+}
